@@ -1,0 +1,35 @@
+{
+  "name": "chatdistill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI Chat to Markdown Exporter — distill messy AI conversations into clean, structured notes.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest"
+  },
+  "keywords": [
+    "chrome-extension",
+    "ai",
+    "markdown",
+    "chatgpt"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.4.0",
+    "@types/chrome": "^0.1.42",
+    "@types/node": "^25.9.1",
+    "jsdom": "^29.1.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vitest": "^4.1.9"
+  },
+  "dependencies": {
+    "html2pdf.js": "^0.14.0",
+    "marked": "^18.0.5",
+    "mermaid": "^11.15.0"
+  }
+}
