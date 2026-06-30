@@ -1,0 +1,27 @@
+<!-- gemini-single.html
+     Fixture: only one message found (a user-query with no model-response).
+     Tests: extractGemini() returns null because messages.length < 2.
+-->
+<infinite-scroller data-test-id="chat-history-container">
+  <div class="conversation-container" id="turn-1">
+    <user-query>
+      <span class="user-query-container">
+        <user-query-content>
+          <div class="user-query-container">
+            <div class="query-content" id="user-query-content-0">
+              <span class="user-query-bubble-with-background">
+                <span class="horizontal-container">
+                  <div class="query-text gds-body-l">
+                    <span class="cdk-visually-hidden">Your message</span>
+                    <p class="query-text-line">Hello Gemini!</p>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </user-query-content>
+      </span>
+    </user-query>
+    <!-- No model-response yet -->
+  </div>
+</infinite-scroller>

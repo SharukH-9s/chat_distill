@@ -1,0 +1,98 @@
+<!-- gemini-multiparagraph.html
+     Fixture: user message spans multiple paragraphs (multiple p.query-text-line elements).
+     Tests: all paragraphs are joined with double newlines, none are lost.
+-->
+<infinite-scroller data-test-id="chat-history-container">
+
+  <div class="conversation-container" id="turn-1">
+    <user-query>
+      <span class="user-query-container">
+        <user-query-content>
+          <div class="user-query-container">
+            <div class="query-content" id="user-query-content-0">
+              <span class="user-query-bubble-with-background">
+                <span class="horizontal-container">
+                  <div class="query-text gds-body-l">
+                    <span class="cdk-visually-hidden">Your message</span>
+                    <!-- Multi-paragraph user message — each line is a separate <p> -->
+                    <p class="query-text-line">I have a TypeScript project with strict mode enabled.</p>
+                    <p class="query-text-line">I'm getting an error: Object is possibly undefined.</p>
+                    <p class="query-text-line">How do I fix it without disabling strict mode?</p>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </user-query-content>
+      </span>
+    </user-query>
+    <model-response>
+      <div>
+        <response-container>
+          <div class="response-container">
+            <div class="presented-response-container">
+              <div class="response-container-content">
+                <div class="response-content">
+                  <div class="model-response-label-announcer" aria-live="off" aria-busy="false">
+                    <h2 class="cdk-visually-hidden screen-reader-model-response-label">Gemini's response</h2>
+                  </div>
+                  <structured-content-container class="model-response-text">
+                    <div class="container">
+                      <message-content id="message-content-id-r_turn-1"></message-content>
+                      <div class="fallback-text">Use optional chaining (obj?.prop) or a null check (if (obj !== undefined)) to guard the access. You can also use the non-null assertion operator (obj!) if you are certain the value exists.</div>
+                    </div>
+                  </structured-content-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </response-container>
+      </div>
+    </model-response>
+  </div>
+
+  <div class="conversation-container" id="turn-2">
+    <user-query>
+      <span class="user-query-container">
+        <user-query-content>
+          <div class="user-query-container">
+            <div class="query-content" id="user-query-content-1">
+              <span class="user-query-bubble-with-background">
+                <span class="horizontal-container">
+                  <div class="query-text gds-body-l">
+                    <span class="cdk-visually-hidden">Your message</span>
+                    <p class="query-text-line">Which approach is best practice?</p>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </user-query-content>
+      </span>
+    </user-query>
+    <model-response>
+      <div>
+        <response-container>
+          <div class="response-container">
+            <div class="presented-response-container">
+              <div class="response-container-content">
+                <div class="response-content">
+                  <div class="model-response-label-announcer" aria-live="off" aria-busy="false">
+                    <h2 class="cdk-visually-hidden screen-reader-model-response-label">Gemini's response</h2>
+                  </div>
+                  <structured-content-container class="model-response-text">
+                    <div class="container">
+                      <message-content id="message-content-id-r_turn-2"></message-content>
+                      <div class="fallback-text">Optional chaining is the cleanest approach. Use non-null assertion only when you have external guarantees the value exists that TypeScript cannot see.</div>
+                    </div>
+                  </structured-content-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </response-container>
+      </div>
+    </model-response>
+  </div>
+
+</infinite-scroller>

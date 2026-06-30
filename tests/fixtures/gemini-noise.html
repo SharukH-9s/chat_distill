@@ -1,0 +1,109 @@
+<!-- gemini-noise.html
+     Fixture: Gemini UI chrome noise mixed in with real conversation.
+     Tests that isIntegrousContent() and .cdk-visually-hidden filtering
+     removes button labels and screen-reader text, leaving only real messages.
+-->
+<infinite-scroller data-test-id="chat-history-container">
+
+  <div class="conversation-container" id="turn-1">
+    <user-query>
+      <span class="user-query-container">
+        <user-query-content>
+          <div class="user-query-container">
+            <div class="query-content" id="user-query-content-0">
+              <span class="user-query-bubble-with-background">
+                <span class="horizontal-container">
+                  <div class="query-text gds-body-l">
+                    <span class="cdk-visually-hidden">Your message</span>
+                    <p class="query-text-line">Explain async/await in JavaScript.</p>
+                  </div>
+                </span>
+              </span>
+              <!-- Action buttons that should NOT end up in extracted content -->
+              <div class="luminous-actions-container">
+                <button aria-label="Copy prompt">Copy</button>
+                <button aria-label="Edit">Edit</button>
+              </div>
+            </div>
+          </div>
+        </user-query-content>
+      </span>
+    </user-query>
+    <model-response>
+      <div>
+        <response-container>
+          <div class="response-container">
+            <div class="presented-response-container">
+              <div class="response-container-content">
+                <div class="response-content">
+                  <div class="model-response-label-announcer" aria-live="off" aria-busy="false">
+                    <h2 class="cdk-visually-hidden screen-reader-model-response-label">Gemini's response</h2>
+                  </div>
+                  <structured-content-container class="model-response-text">
+                    <div class="container">
+                      <message-content id="message-content-id-r_turn-1"></message-content>
+                      <div class="fallback-text">Async/await is syntactic sugar over Promises. The async keyword marks a function as asynchronous, and await pauses execution until a Promise resolves.</div>
+                    </div>
+                  </structured-content-container>
+                  <!-- Footer action buttons — should be excluded -->
+                  <div class="response-footer">
+                    <div class="actions-container-v2">
+                      <button data-test-id="thumb-up-button" aria-label="Thumbs up">Thumbs up</button>
+                      <button data-test-id="thumb-down-button" aria-label="Thumbs down">Thumbs down</button>
+                      <button data-test-id="copy-button" aria-label="Copy">Copy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </response-container>
+      </div>
+    </model-response>
+  </div>
+
+  <div class="conversation-container" id="turn-2">
+    <user-query>
+      <span class="user-query-container">
+        <user-query-content>
+          <div class="user-query-container">
+            <div class="query-content" id="user-query-content-1">
+              <span class="user-query-bubble-with-background">
+                <span class="horizontal-container">
+                  <div class="query-text gds-body-l">
+                    <span class="cdk-visually-hidden">Your message</span>
+                    <p class="query-text-line">Can you give an example?</p>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </user-query-content>
+      </span>
+    </user-query>
+    <model-response>
+      <div>
+        <response-container>
+          <div class="response-container">
+            <div class="presented-response-container">
+              <div class="response-container-content">
+                <div class="response-content">
+                  <div class="model-response-label-announcer" aria-live="off" aria-busy="false">
+                    <h2 class="cdk-visually-hidden screen-reader-model-response-label">Gemini's response</h2>
+                  </div>
+                  <structured-content-container class="model-response-text">
+                    <div class="container">
+                      <message-content id="message-content-id-r_turn-2"></message-content>
+                      <div class="fallback-text">Sure! Here is a simple example: async function fetchData() { const data = await fetch(url); return data.json(); }</div>
+                    </div>
+                  </structured-content-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </response-container>
+      </div>
+    </model-response>
+  </div>
+
+</infinite-scroller>

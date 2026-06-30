@@ -1,0 +1,99 @@
+<!-- gemini-streaming.html
+     Fixture: Gemini is mid-generation (aria-busy="true" on the last model-response).
+     Tests: streaming turn is skipped, but completed turns are still extracted.
+-->
+<infinite-scroller data-test-id="chat-history-container">
+
+  <!-- Turn 1 — completed -->
+  <div class="conversation-container" id="turn-1">
+    <user-query>
+      <span class="user-query-container">
+        <user-query-content>
+          <div class="user-query-container">
+            <div class="query-content" id="user-query-content-0">
+              <span class="user-query-bubble-with-background">
+                <span class="horizontal-container">
+                  <div class="query-text gds-body-l">
+                    <span class="cdk-visually-hidden">Your message</span>
+                    <p class="query-text-line">What is a closure in JavaScript?</p>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </user-query-content>
+      </span>
+    </user-query>
+    <model-response>
+      <div>
+        <response-container>
+          <div class="response-container">
+            <div class="presented-response-container">
+              <div class="response-container-content">
+                <div class="response-content">
+                  <!-- aria-busy=false → completed, safe to extract -->
+                  <div class="model-response-label-announcer" aria-live="off" aria-busy="false">
+                    <h2 class="cdk-visually-hidden screen-reader-model-response-label">Gemini's response</h2>
+                  </div>
+                  <structured-content-container class="model-response-text">
+                    <div class="container">
+                      <message-content id="message-content-id-r_turn-1"></message-content>
+                      <div class="fallback-text">A closure is a function that retains access to its outer scope even after that scope has finished executing.</div>
+                    </div>
+                  </structured-content-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </response-container>
+      </div>
+    </model-response>
+  </div>
+
+  <!-- Turn 2 — streaming (aria-busy=true) -->
+  <div class="conversation-container" id="turn-2">
+    <user-query>
+      <span class="user-query-container">
+        <user-query-content>
+          <div class="user-query-container">
+            <div class="query-content" id="user-query-content-1">
+              <span class="user-query-bubble-with-background">
+                <span class="horizontal-container">
+                  <div class="query-text gds-body-l">
+                    <span class="cdk-visually-hidden">Your message</span>
+                    <p class="query-text-line">Can you show me a practical example?</p>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </user-query-content>
+      </span>
+    </user-query>
+    <model-response>
+      <div>
+        <response-container>
+          <div class="response-container">
+            <div class="presented-response-container">
+              <div class="response-container-content">
+                <div class="response-content">
+                  <!-- aria-busy=true → Gemini is still generating; skip this turn -->
+                  <div class="model-response-label-announcer" aria-live="off" aria-busy="true">
+                    <h2 class="cdk-visually-hidden screen-reader-model-response-label">Gemini's response</h2>
+                  </div>
+                  <structured-content-container class="model-response-text">
+                    <div class="container">
+                      <message-content id="message-content-id-r_turn-2"></message-content>
+                      <div class="fallback-text">Here is an example of a cl</div>
+                    </div>
+                  </structured-content-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </response-container>
+      </div>
+    </model-response>
+  </div>
+
+</infinite-scroller>

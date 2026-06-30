@@ -1,0 +1,151 @@
+<!-- gemini-stable.html
+     Happy-path fixture: 3 conversation turns with real text.
+     Tests: role parsing, p.query-text-line extraction, shadow root simulation,
+            message count, confidence scoring.
+
+     NOTE: jsdom does not support Shadow DOM (element.shadowRoot is always null).
+     The extractor's secondary path (structured-content-container textContent)
+     is therefore used for model responses in all test fixtures.
+     This is the intended fallback path and is explicitly tested here.
+-->
+<infinite-scroller data-test-id="chat-history-container">
+
+  <!-- Turn 1 -->
+  <div class="conversation-container" id="turn-1">
+    <user-query>
+      <span class="user-query-container">
+        <user-query-content>
+          <div class="user-query-container">
+            <div class="query-content" id="user-query-content-0">
+              <span class="user-query-bubble-with-background">
+                <span class="horizontal-container">
+                  <div class="query-text gds-body-l">
+                    <span class="cdk-visually-hidden">Your message</span>
+                    <p class="query-text-line">What is the best way to learn TypeScript?</p>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </user-query-content>
+      </span>
+    </user-query>
+    <model-response>
+      <div>
+        <response-container>
+          <div class="response-container">
+            <div class="presented-response-container">
+              <div class="response-container-content">
+                <div class="response-content">
+                  <div class="model-response-label-announcer" aria-live="off" aria-busy="false">
+                    <h2 class="cdk-visually-hidden screen-reader-model-response-label">Gemini's response</h2>
+                  </div>
+                  <structured-content-container class="model-response-text">
+                    <div class="container">
+                      <message-content id="message-content-id-r_turn-1">
+                        <!-- shadow root content not accessible in jsdom; fallback uses structured-content-container textContent -->
+                      </message-content>
+                      <!-- Fallback text sibling for testing (simulates what shadow root would contain) -->
+                      <div class="fallback-text">The best way to learn TypeScript is to start with the official handbook, build small projects, and gradually add types to existing JavaScript code.</div>
+                    </div>
+                  </structured-content-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </response-container>
+      </div>
+    </model-response>
+  </div>
+
+  <!-- Turn 2 -->
+  <div class="conversation-container" id="turn-2">
+    <user-query>
+      <span class="user-query-container">
+        <user-query-content>
+          <div class="user-query-container">
+            <div class="query-content" id="user-query-content-1">
+              <span class="user-query-bubble-with-background">
+                <span class="horizontal-container">
+                  <div class="query-text gds-body-l">
+                    <span class="cdk-visually-hidden">Your message</span>
+                    <p class="query-text-line">Should I use interfaces or type aliases?</p>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </user-query-content>
+      </span>
+    </user-query>
+    <model-response>
+      <div>
+        <response-container>
+          <div class="response-container">
+            <div class="presented-response-container">
+              <div class="response-container-content">
+                <div class="response-content">
+                  <div class="model-response-label-announcer" aria-live="off" aria-busy="false">
+                    <h2 class="cdk-visually-hidden screen-reader-model-response-label">Gemini's response</h2>
+                  </div>
+                  <structured-content-container class="model-response-text">
+                    <div class="container">
+                      <message-content id="message-content-id-r_turn-2"></message-content>
+                      <div class="fallback-text">Both work well. Prefer interfaces for object shapes you expect to extend, and type aliases for unions, intersections, and primitives.</div>
+                    </div>
+                  </structured-content-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </response-container>
+      </div>
+    </model-response>
+  </div>
+
+  <!-- Turn 3 -->
+  <div class="conversation-container" id="turn-3">
+    <user-query>
+      <span class="user-query-container">
+        <user-query-content>
+          <div class="user-query-container">
+            <div class="query-content" id="user-query-content-2">
+              <span class="user-query-bubble-with-background">
+                <span class="horizontal-container">
+                  <div class="query-text gds-body-l">
+                    <span class="cdk-visually-hidden">Your message</span>
+                    <p class="query-text-line">What about generics?</p>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </user-query-content>
+      </span>
+    </user-query>
+    <model-response>
+      <div>
+        <response-container>
+          <div class="response-container">
+            <div class="presented-response-container">
+              <div class="response-container-content">
+                <div class="response-content">
+                  <div class="model-response-label-announcer" aria-live="off" aria-busy="false">
+                    <h2 class="cdk-visually-hidden screen-reader-model-response-label">Gemini's response</h2>
+                  </div>
+                  <structured-content-container class="model-response-text">
+                    <div class="container">
+                      <message-content id="message-content-id-r_turn-3"></message-content>
+                      <div class="fallback-text">Generics allow you to write reusable, type-safe code. Use them when a function or class should work with multiple types without losing type information.</div>
+                    </div>
+                  </structured-content-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </response-container>
+      </div>
+    </model-response>
+  </div>
+
+</infinite-scroller>
