@@ -1,0 +1,67 @@
+========================================================================
+ChatDistill — Project Tech Stack Reference
+========================================================================
+
+This document details the core technologies, configuration structure,
+and packages utilized in the ChatDistill Chrome Extension project.
+
+------------------------------------------------------------------------
+1. Chrome Extension Architecture (Manifest V3)
+------------------------------------------------------------------------
+* Manifest V3: The modern browser specification for extension security and 
+  performance. Under V3, all code must be locally bundled and background 
+  pages are replaced by ephemeral service workers.
+* Configuration: Declared dynamically via `defineManifest` inside:
+  [vite.config.ts](file:///e%3A/projects/anti/ai-chat-md-exporter/vite.config.ts)
+
+* Core Components:
+  - Background Service Worker: Handles long-running, out-of-page operations 
+    such as calling the Gemini API, transcript compiling, and downloading.
+    - File: [src/background/service-worker.ts](file:///e%3A/projects/anti/ai-chat-md-exporter/src/background/service-worker.ts)
+  - Content Scripts: Injected directly into matching web pages to read and 
+    extract conversation DOM nodes.
+    - File: [src/content/index.ts](file:///e%3A/projects/anti/ai-chat-md-exporter/src/content/index.ts)
+    - Extractor subfolder: [src/content/extractors/](file:///e%3A/projects/anti/ai-chat-md-exporter/src/content/extractors/)
+  - Extension Pages: HTML panels running in the extension sandbox.
+    - Popup UI: [src/popup/index.html](file:///e%3A/projects/anti/ai-chat-md-exporter/src/popup/index.html) -> loads [popup.ts](file:///e%3A/projects/anti/ai-chat-md-exporter/src/popup/popup.ts)
+    - Options Page: [src/options/index.html](file:///e%3A/projects/anti/ai-chat-md-exporter/src/options/index.html) (configurations panel)
+
+* Extension Permissions:
+  - "storage": Saves user preferences, active profiles, and API keys.
+  - "activeTab": Permits extracting chat content from the currently active tab.
+  - "downloads": Permits saving compiled notes directly to the Downloads folder.
+  - "tabs": Enables the popup to identify tab status and URL for platform matching.
+  - host_permissions ("https://generativelanguage.googleapis.com/*"): Allows 
+    the service worker to make API calls to Google Gemini without CORS blockages.
+
+------------------------------------------------------------------------
+2. Tooling & Build System
+------------------------------------------------------------------------
+* TypeScript (TS): 
+  - Adds static type-safety checks to our code. Compiles down to standard JS.
+  - Config: [tsconfig.json](file:///e%3A/projects/anti/ai-chat-md-exporter/tsconfig.json)
+
+* Vite: 
+  - The build tool and bundler. It handles compiling TypeScript, bundling 
+    assets, and serving a hot-reloading development environment.
+  - Config: [vite.config.ts](file:///e%3A/projects/anti/ai-chat-md-exporter/vite.config.ts)
+
+* crxjs (`@crxjs/vite-plugin`): 
+  - A Vite plugin that translates standard Vite bundle builds into Chrome-ready 
+    extension bundles. It parses the manifest configuration and manages extension HMR.
+
+* Vitest: 
+  - A fast Vite-native testing framework that scans for `*.test.ts` files 
+    and executes unit assertions automatically in the console.
+
+* jsdom: 
+  - A simulated, purely JavaScript-based DOM environment running in Node.js. 
+    It allows Vitest to run DOM query-selectors on raw HTML fixtures without 
+    running a real browser.
+
+------------------------------------------------------------------------
+3. External Production Dependencies
+------------------------------------------------------------------------
+* marked: Converts raw markdown strings returned from Gemini into HTML structures.
+* mermaid: Renders diagrams written in Mermaid markdown syntax into vector SVGs.
+* html2pdf.js: Converts HTML elements and SVGs on the page into downloadable PDF sheets.
