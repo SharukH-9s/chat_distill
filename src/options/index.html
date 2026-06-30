@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatDistill — Settings</title>
+  <meta name="description" content="Configure your Gemini API key and model preferences for ChatDistill.">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="page">
+
+    <header class="page-header">
+      <div class="logo">
+        <div class="logo-icon" aria-hidden="true">⚗</div>
+        <span class="logo-name">ChatDistill</span>
+        <span class="logo-sub">Settings</span>
+      </div>
+    </header>
+
+    <main class="page-body">
+
+      <!-- API Key -->
+      <section class="card" aria-labelledby="section-api-key">
+        <h2 class="card-title" id="section-api-key">Gemini API Key</h2>
+        <p class="card-desc">
+          Your key is stored locally on this device and never transmitted to anyone except Google's Gemini API.
+        </p>
+
+        <div class="field-group">
+          <div class="input-row">
+            <input
+              id="api-key-input"
+              type="password"
+              class="text-input"
+              placeholder="AIza…"
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Gemini API key"
+            />
+            <button id="btn-toggle-key" class="btn-icon" title="Show / hide key" aria-label="Toggle key visibility">
+              <span id="eye-icon">👁</span>
+            </button>
+          </div>
+
+          <div id="api-key-feedback" class="feedback" role="alert" aria-live="polite"></div>
+
+          <div class="btn-row">
+            <button id="btn-save-key" class="btn-primary">Save Key</button>
+            <button id="btn-test-connection" class="btn-ghost" disabled>Test Connection</button>
+            <button id="btn-clear-key" class="btn-ghost">Clear</button>
+          </div>
+
+          <div id="test-result" class="test-result" role="status" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- Profile -->
+      <section class="card" aria-labelledby="section-profile">
+        <h2 class="card-title" id="section-profile">Extraction Profile</h2>
+        <p class="card-desc">
+          Choose the default goal, depth, and style for your distillations.
+        </p>
+
+        <div class="field-group">
+          <select id="profile-select" class="select-input" aria-label="Extraction Profile selection">
+            <!-- Populated by options.ts -->
+          </select>
+          <div id="profile-feedback" class="feedback" role="status" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- Model -->
+      <section class="card" aria-labelledby="section-model">
+        <h2 class="card-title" id="section-model">Model</h2>
+        <p class="card-desc">
+          Select the Gemini model used for distillation. Preference is saved automatically.
+        </p>
+
+        <div class="field-group">
+          <select id="model-select" class="select-input" aria-label="Gemini model selection">
+            <!-- Populated by options.ts -->
+          </select>
+          <div id="model-feedback" class="feedback" role="status" aria-live="polite"></div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="page-footer">
+      <span id="prompt-version" class="footer-version"></span>
+      <a
+        href="https://github.com/SharukH-9s/chat_distill"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-link"
+      >GitHub ↗</a>
+    </footer>
+
+  </div>
+  <script type="module" src="options.ts"></script>
+</body>
+</html>
