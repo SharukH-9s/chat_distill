@@ -1,9 +1,9 @@
-Add-Type -AssemblyName System.Drawing
-
 param (
     [string]$src = "icon_source.png",
     [string]$outDir = "..\public\icons"
 )
+Add-Type -AssemblyName System.Drawing
+
 $sizes  = @(16, 48, 128)
 
 $original = [System.Drawing.Image]::FromFile($src)
